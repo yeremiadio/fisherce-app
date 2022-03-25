@@ -13,7 +13,17 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Login Screen</Text>
-
+      <Text style={{ marginVertical: 8 }}>
+        Go to{" "}
+        <Text
+          style={{ color: "blue" }}
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        >
+          Home
+        </Text>
+      </Text>
       <Button title="Login" onPress={loginUser} />
     </View>
   );

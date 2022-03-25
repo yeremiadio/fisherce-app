@@ -16,34 +16,52 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Home Screen</Text>
-      {auth.isAuthenticated && <Text>Hello, {auth.user.name}</Text>}
-      <Image
-        source={{ uri: `${IMAGE_URL}` }}
-        style={{ width: 200, height: 200 }}
-      />
-      <Button title="Logout" onPress={logOutUser} />
-      <Text>
-        Back to{" "}
-        <Text
-          style={{ color: "blue" }}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-          Login
-        </Text>
-      </Text>
-      <Text>
-        Back to{" "}
-        <Text
-          style={{ color: "blue" }}
-          onPress={() => {
-            navigation.navigate("Register");
-          }}
-        >
-          Register
-        </Text>
-      </Text>
+      {auth.isAuthenticated ? (
+        <View>
+          <Text>Hello, {auth.user.name}</Text>
+          <Image
+            source={{ uri: `${IMAGE_URL}` }}
+            style={{ width: 200, height: 200 }}
+          />
+          <Text style={{ marginVertical: 8 }}>
+            Back to{" "}
+            <Text
+              style={{ color: "blue" }}
+              onPress={() => {
+                navigation.navigate("Login");
+              }}
+            >
+              Login
+            </Text>
+          </Text>
+          <Button title="Logout" onPress={logOutUser} />
+        </View>
+      ) : (
+        <View>
+          <Text>
+            Back to{" "}
+            <Text
+              style={{ color: "blue" }}
+              onPress={() => {
+                navigation.navigate("Login");
+              }}
+            >
+              Login
+            </Text>
+          </Text>
+          <Text>
+            Back to{" "}
+            <Text
+              style={{ color: "blue" }}
+              onPress={() => {
+                navigation.navigate("Register");
+              }}
+            >
+              Register
+            </Text>
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
