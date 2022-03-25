@@ -14,41 +14,13 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Group screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="Home" component={HomeScreen} />
+          </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
 }
-
-/*
-
-  {isLoggedIn ? (
-          // Screens for logged in users
-          <Stack.Group>
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Profile" component={Profile} />
-          </Stack.Group>
-        ) : (
-          // Auth screens
-          <Stack.Group screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="SignIn" component={SignIn} />
-            <Stack.Screen name="SignUp" component={SignUp} />
-          </Stack.Group>
-        )}
-        {/* Common modal screens */
-// <Stack.Group screenOptions={{ presentation: "modal" }}>
-//   <Stack.Screen name="Help" component={Help} />
-//   <Stack.Screen name="Invite" component={Invite} />
-// </Stack.Group>
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
