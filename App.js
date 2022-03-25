@@ -1,23 +1,25 @@
 import * as React from "react";
+import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./components/Screens/LoginScreen";
 import RegisterScreen from "./components/Screens/RegisterScreen";
 import HomeScreen from "./components/Screens/HomeScreen";
+import store from "./redux/store";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Group screenOptions={{ headerShown: false }}>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
-        </Stack.Group>
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
