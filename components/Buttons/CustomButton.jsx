@@ -1,7 +1,8 @@
 import React from "react";
-import { TouchableOpacity, ActivityIndicator } from "react-native";
+import { ActivityIndicator } from "react-native";
 import tw from "../../utils/tw";
 import CustomText from "../Texts/CustomText";
+import Ripple from "react-native-material-ripple";
 
 const CustomButton = ({
   onPress,
@@ -14,9 +15,11 @@ const CustomButton = ({
   ...rest
 }) => {
   return (
-    <TouchableOpacity
-      {...rest}
+    <Ripple
+      rippleCentered
+      rippleDuration={300}
       onPress={onPress}
+      {...rest}
       disabled={isDisabled}
       style={[
         tw`${className}`,
@@ -32,7 +35,7 @@ const CustomButton = ({
       >
         {isLoading ? loadingText : children}
       </CustomText>
-    </TouchableOpacity>
+    </Ripple>
   );
 };
 

@@ -116,7 +116,7 @@ const LoginScreen = ({ navigation }) => {
           >
             Don't have an account?{" "}
             <Text
-              style={tw`text-gray-400 font-bold`}
+              style={tw`text-blue-400 font-bold`}
               onPress={() => {
                 navigation.navigate("Register");
               }}
