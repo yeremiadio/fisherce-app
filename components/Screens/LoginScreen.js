@@ -2,42 +2,27 @@ import React, { useState } from "react";
 import {
   View,
   ScrollView,
-  Text,
   Image,
   Alert,
   useWindowDimensions,
 } from "react-native";
-import { useDispatch } from "react-redux";
-import { SET_USER } from "../../redux/constants";
+import { useDispatch, useSelector } from "react-redux";
 import tw from "../../utils/tw";
 import CustomTextField from "../TextFields/CustomTextField";
 import LoginIllustration from "../../assets/images/login-illustration.png";
 import CustomButton from "../Buttons/CustomButton";
 import CustomText from "../Texts/CustomText";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { loginUser } from "../../redux/actions/authAction";
 
 const LoginScreen = ({ navigation }) => {
   const [email, onChangeEmail] = useState("");
-  const [isLoading, SetIsLoading] = useState(false);
+  const isFetching = useSelector((state) => state.auth.isFetching);
   const [password, onChangePassword] = useState("");
   const dispatch = useDispatch();
   const { height } = useWindowDimensions();
-  const loginUser = async () => {
-    SetIsLoading(true);
-    try {
-      await setTimeout(() => {
-        SetIsLoading(false);
-        const data = {
-          email: email,
-          password: password,
-        };
-        // await dispatch({ type: SET_USER });
-        Alert.alert(JSON.stringify(data));
-        // navigation.navigate("Home");
-      }, 1500);
-    } catch {
-      SetIsLoading(false);
-    }
+  const login = () => {
+    dispatch(loginUser({ email, password }, Alert, navigation));
   };
   return (
     <ScrollView style={tw`px-4 h-full bg-white`}>
@@ -103,27 +88,24 @@ const LoginScreen = ({ navigation }) => {
         </View>
         <View style={tw`w-full`}>
           <CustomButton
-            onPress={loginUser}
-            isLoading={isLoading}
-            isDisabled={isLoading}
+            onPress={login}
+            isLoading={isFetching}
+            isDisabled={isFetching}
             loadingText="Checking..."
             className="bg-blue-500 rounded-lg p-3"
           >
             Continue
           </CustomButton>
-          <Text
-            style={tw`text-gray-400 text-center mt-2 tracking-normal text-sm`}
-          >
+          <CustomText className="text-gray-400 text-center mt-2 tracking-normal text-sm">
             Don't have an account?{" "}
-            <Text
-              style={tw`text-blue-400 font-bold`}
-              onPress={() => {
-                navigation.navigate("Register");
-              }}
+            <CustomText
+              fontFamily="InterSemiBold"
+              onPress={() => navigation.navigate("Register")}
+              className="text-blue-400 text-center mt-2 tracking-normal text-sm"
             >
               Register
-            </Text>
-          </Text>
+            </CustomText>
+          </CustomText>
         </View>
       </View>
     </ScrollView>

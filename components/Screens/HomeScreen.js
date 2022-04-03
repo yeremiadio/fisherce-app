@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }) => {
       <Text>Home Screen</Text>
       {auth.isAuthenticated ? (
         <View>
-          <Text>Hello, {auth.user.name}</Text>
+          <Text>Hello, {auth.user.email}</Text>
           <Image
             source={{ uri: `${IMAGE_URL}` }}
             style={{ width: 200, height: 200 }}
