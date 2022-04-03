@@ -30,8 +30,8 @@ const CustomButton = ({
         <ActivityIndicator size={"small"} color="white" style={tw`mr-2`} />
       ) : null}
       <CustomText
-        fontFamily="InterBold"
-        className="text-white tracking-normal text-center text-lg"
+        fontFamily="InterSemiBold"
+        className="text-white tracking-normal text-center text-base"
       >
         {isLoading ? loadingText : children}
       </CustomText>
