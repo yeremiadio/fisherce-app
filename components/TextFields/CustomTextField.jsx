@@ -7,6 +7,7 @@ const CustomButton = ({
   value,
   onChangeValue,
   icon,
+  multiline = false,
   fontFamily = "",
   className = "",
   label = "",
@@ -21,12 +22,16 @@ const CustomButton = ({
         {label}
       </CustomText>
       <View
-        style={tw`${textFocusInputStyleBorder} rounded-lg py-[10px] px-4 bg-white text-base flex flex-row items-center`}
+        style={tw`${textFocusInputStyleBorder} rounded-lg py-[10px] px-4 bg-white text-base ${
+          !multiline && "flex flex-row items-center"
+        }`}
       >
-        {icon ? icon : null}
+        {icon && !multiline ? icon : null}
         <TextInput
           style={[tw`${className}`, tw`flex-1`]}
           {...rest}
+          multiline={multiline}
+          textAlignVertical={multiline ? "top" : "auto"}
           onBlur={() => setTextFocusInputStyleBorder("border border-gray-300")}
           onFocus={() => setTextFocusInputStyleBorder("border border-blue-300")}
           underlineColorAndroid="transparent"
